@@ -35,11 +35,11 @@
     mainView.controller = self;
     
 	// Allocate RSS manager, but don't start it until we get a location
-	rssManager = [[[OverheadRssManager alloc] init] autorelease];
+	self.rssManager = [[[OverheadRssManager alloc] init] autorelease];
     rssManager.delegate = self;
 	
 	// Allocate GPS manager
-    locationManager = [[[CLLocationManager alloc] init] autorelease];
+    self.locationManager = [[[CLLocationManager alloc] init] autorelease];
     locationManager.delegate = self;
     
     // http://orbitingfrog.com/blog/over-twitter/ says 20 miles is close enough 32k meters == 20 miles
@@ -51,10 +51,6 @@
 	
 	// Never waste battery spending more than 60 seconds figuring out where we are
     [self performSelector:@selector(stopUpdatingLocation:) withObject:nil afterDelay:60];
-    
-    
-    // XXX Temp dev hack
-    [rssManager startRetrieving:nil];    
 
 	[self refreshView];
 }
@@ -72,6 +68,7 @@
 	[rssManager startRetrieving:newLocation];    
     [self refreshView];
 }
+
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     

@@ -32,7 +32,7 @@
 
     //  Local file for network disconnected development.
     //	NSString * url = @"file:///Users/dgarrett/tmp/test.rss";
-    url = @"file:///Users/dgarrett/tmp/test.rss";
+    //url = @"file:///Users/dgarrett/tmp/test.rss";
     
 	[self parseXMLFileAtURL:url];
 }

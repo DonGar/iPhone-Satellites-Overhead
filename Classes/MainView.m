@@ -25,9 +25,12 @@
 	
 	latLable.text = [[NSNumber numberWithDouble:controller.location.coordinate.latitude] stringValue];
 	longLable.text = [[NSNumber numberWithDouble:controller.location.coordinate.longitude] stringValue];
+    
+    [satTable reloadData];
 }
 
-// UITableViewDataSource
+#pragma mark UITableViewDataSource
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
     
@@ -44,7 +47,9 @@
 
     
 	// Configure the cell.
-    cell.text = [NSString stringWithFormat:@"%i", [indexPath indexAtPosition:1]];
+    //   title
+    //   summary
+    cell.text = [item objectForKey:@"title"];
     
     return cell;
 }
@@ -59,10 +64,11 @@
     return controller.satellites.count;
 }
 
-// UITableViewDelegate 
-//   (None implemented)
+#pragma mark UITableViewDelegate 
+// None implemented
 
-// UIView
+
+#pragma mark UIView
 
 - (id)initWithFrame:(CGRect)frame {
 
